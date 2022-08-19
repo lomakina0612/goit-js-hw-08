@@ -39,7 +39,10 @@ function initialPage() {
 // выводит в консоль данные формы, потом очищает форму и хранилище
 function handleSubmit (event) { 
   event.preventDefault();   //отмена действия по умолчанию
-  const { email, message } = event.currentTarget;   //получаем форму и дуструктуризируем ее
+  const { email, message } = event.currentTarget;   //получаем форму и деструктуризируем ее
+  if (!email.value || !message.value) {
+    return console.log("Fill in all the fields");
+  }
   console.log({email: email.value, message: message.value});  // выводим в консоль данные формы
   event.currentTarget.reset();    // очистка формы
   storageApi.remove(FEEDBACK_FORM_KEY);   // очистка хранилища
